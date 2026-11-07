@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Beğeni Temizleyici",
+  "version": "1.0",
+  "description": "Instagram 'Etkinlikleriniz > Etkileşimler > Beğeniler' sayfasındaki tüm post ve reels beğenilerini otomatik olarak sırayla kaldırır.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.instagram.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "IG Beğeni Temizleyici"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.instagram.com/your_activity/interactions/likes/*",
+        "https://www.instagram.com/your_activity/interactions/likes"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

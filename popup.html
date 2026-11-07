@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>IG Beğeni Temizleyici</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      width: 270px;
+      padding: 16px;
+      margin: 0;
+    }
+    h1 { font-size: 15px; margin: 0 0 10px; }
+    .status { font-size: 13px; margin-bottom: 10px; color: #555; }
+    .count { font-size: 24px; font-weight: 700; margin-bottom: 14px; }
+    .count span { color: #0095f6; }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+    #startBtn { background: #0095f6; color: white; }
+    #startBtn:disabled { background: #b2dffc; cursor: not-allowed; }
+    #stopBtn { background: #ed4956; color: white; }
+    #stopBtn:disabled { background: #f6c6ca; cursor: not-allowed; }
+    .warn {
+      font-size: 11px;
+      color: #ed4956;
+      background: #fff0f1;
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .hint { font-size: 11px; color: #999; margin-top: 8px; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <h1>Instagram Beğeni Temizleyici</h1>
+  <div class="warn" id="urlWarning">
+    Bu sayfa doğru değil. Önce şu adrese git:<br />instagram.com/your_activity/interactions/likes/
+  </div>
+  <div class="status" id="statusText">Durum: Hazır</div>
+  <div class="count"><span id="countText">0</span> beğeni kaldırıldı</div>
+  <button id="startBtn">Başlat</button>
+  <button id="stopBtn">Durdur</button>
+  <div class="hint">
+    Sekmeyi açık bırak; kendi kendine seçip ~100 öğede bir otomatik
+    olarak "Beğenmekten Vazgeç" + onay penceresine basıp kaldırır, sonra
+    seçime devam eder. Tüm beğeniler bitince otomatik durur.
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
