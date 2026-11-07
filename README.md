@@ -18,6 +18,12 @@ A Chrome extension that automatically selects and removes **all of your likes**
 > warranty and accepts no liability for any consequences of using this tool
 > (see [LICENSE](./LICENSE)).
 
+<p align="center">
+  <img src="screenshots/popup.png" alt="Extension popup showing live progress" width="320">
+</p>
+
+<p align="center"><sub>The extension's popup while running — a live counter and Start/Stop controls.</sub></p>
+
 ---
 
 ## 🇹🇷 Türkçe
@@ -75,6 +81,22 @@ sınırına ulaşınca otomatik kaldırma, taze kaydırma konteyneri tespiti ve
 hata durumunda kademeli olarak kendi kendine tekrar deneme içerir. Detaylı
 teknik açıklama ve ayarlanabilir parametreler (hız, bekleme süreleri) için
 `content.js` içindeki yorum satırlarına bakabilirsin.
+
+```mermaid
+flowchart TD
+    A([Başlat'a bas]) --> B["'Seç' moduna gir"]
+    B --> C["Görünen gönderi/reels'leri\ntek tek seç"]
+    C --> D{"~100 öğeye\nulaşıldı mı?"}
+    D -- Evet --> E["'Beğenmekten Vazgeç'\n+ onay penceresi"]
+    E --> C
+    D -- Hayır --> F{"Seçilecek yeni\nöğe var mı?"}
+    F -- Evet --> C
+    F -- Hayır --> G["Sayfayı aşağı kaydır,\nyeni içerik bekle"]
+    G --> H{"Yeni içerik\ngeldi mi?"}
+    H -- Evet --> C
+    H -- Hayır, art arda birkaç kez --> I["Kalan seçilileri kaldır"]
+    I --> J([Tamamlandı ✅])
+```
 
 ### Sorun giderme
 
@@ -151,6 +173,22 @@ freshly-resolved scroll container on every scroll (to avoid stale DOM
 references), and a self-healing retry loop with increasing backoff on
 failure. See the inline comments in `content.js` for the full technical
 details and tunable parameters (speed, delays).
+
+```mermaid
+flowchart TD
+    A([Click Start]) --> B["Enter 'Select' mode"]
+    B --> C["Select visible\nposts/reels one by one"]
+    C --> D{"~100 items\nselected?"}
+    D -- Yes --> E["'Unlike' +\nconfirm dialog"]
+    E --> C
+    D -- No --> F{"Any new item\nto select?"}
+    F -- Yes --> C
+    F -- No --> G["Scroll down,\nwait for more content"]
+    G --> H{"New content\nloaded?"}
+    H -- Yes --> C
+    H -- No, a few times in a row --> I["Remove any remaining\nselected items"]
+    I --> J([Done ✅])
+```
 
 ### Troubleshooting
 
